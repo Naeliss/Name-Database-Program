@@ -1,9 +1,11 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <string>
-#include <algorithm>
 #include <sstream>
+#include <cctype>
+#include <ctype.h>
 
 std::string menu(std::string &input);
 void searchName();
@@ -43,6 +45,7 @@ int main(int argc, char* argv[])
 
     switch(choice_int){
       case 1:
+        searchName();
         break;
       case 2:
         break;
@@ -80,8 +83,16 @@ void searchName(){
 
   std::cout << "Voer naam in die je wilt zoeken: ";
   std::cin >> name;
-  // if(std::any_of(name.begin(), name.end(), std::isdigit)){
-  //   std::cout << "Naam mag geen cijfers bevatten!\n" << std::endl;
-  // }
+  
+  bool digitInName;
 
-}
+  for(int i = 0; i < name.length(); i++){
+    digitInName = std::isdigit(name[i]);
+
+    if(std::isdigit(name[i])) {
+      std::cout << "Geen geldige naam!\n" << std::endl;
+      return;
+    }
+
+  }
+} 
